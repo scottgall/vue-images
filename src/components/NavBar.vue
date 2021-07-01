@@ -2,10 +2,14 @@
   <div class="ui secondary pointing menu">
     <a href="/" class="active item">Image Storage</a>
     <div class="right menu">
-      <a href="#" class="ui item" @click="login">
+      <div class="horizontal" v-if="isLoggedIn">
+        <router-link to="/" class="item">Galleries</router-link>
+        <router-link to="/upload" class="item">Upload</router-link>
+        <a class="item" @click="logout">Logout</a>
+      </div>
+      <a v-else href="#" class="ui item" @click="login">
         login
       </a>
-      {{ isLoggedIn }}
     </div>
   </div>
 </template>
@@ -16,8 +20,13 @@ import { mapActions, mapGetters } from 'vuex';
 export default {
   name: 'NavBar',
   computed: mapGetters(['isLoggedIn']),
-  methods: {
-    ...mapActions(['login'])
-  }
+  methods: mapActions(['login', 'logout'])
 };
 </script>
+
+<style scoped>
+.horizontal {
+  display: flex;
+  flex-direction: row;
+}
+</style>
