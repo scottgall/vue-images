@@ -5,15 +5,17 @@
       <a href="#" class="ui item" @click="login">
         login
       </a>
+      {{ isLoggedIn }}
     </div>
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
   name: 'NavBar',
+  computed: mapGetters(['isLoggedIn']),
   methods: {
     ...mapActions(['login'])
   }
